@@ -1,12 +1,17 @@
+import { useSelector } from 'react-redux';
 import CartItem from './CartItem';
 import './Cart.css';
 
 function Cart() {
-  const cart = {};
-  const produce = {};
+  const cart = useSelector(state => state.cart);
+  const produce = useSelector(state => state.produce);
 
   const cartItems = Object.values(cart)
     .map(item => {
+      // console.log({
+      //   ...item,
+      //   ...produce[item.id]
+      // })
       return {
         ...item,
         ...produce[item.id]
@@ -30,7 +35,7 @@ function Cart() {
   return (
     <div className="cart">
       <ul>
-        {cartItems.map(item => <CartItem key={item.id} item={item}/>)}
+        {cartItems.map(item => <CartItem key={item.id} item={item} />)}
       </ul>
       <hr />
       <form onSubmit={onSubmit}>

@@ -1,7 +1,7 @@
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addToCart } from '../../store/cart';
 
-function ProduceDetails({produce}) {
+function ProduceDetails({ produce }) {
   let cartItem = {};
   // console.log(produce.name)
   const dispatch = useDispatch();
