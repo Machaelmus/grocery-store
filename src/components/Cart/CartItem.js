@@ -1,7 +1,23 @@
 import { useState, useEffect } from 'react';
+import {useDispatch} from 'react-redux';
+import { removeItem } from '../../store/cart';
+import {incrementItem} from '../../store/cart'
 
 function CartItem({ item }) {
   const [count, setCount] = useState(item.count);
+  const dispatch = useDispatch();
+
+  const handleRemove = (e) => {
+    e.preventDefault();
+    dispatch(removeItem(item.id))
+  }
+
+
+  const incrementButton = (e) => {
+    e.preventDefault()
+    dispatch(incrementItem(item.id, count))
+
+  }
 
   useEffect(() => {
     setCount(item.count);
@@ -18,6 +34,7 @@ function CartItem({ item }) {
           value={count} />
         <button
           className="cart-item-button"
+          onClick={incrementButton}
         >
           +
         </button>
@@ -28,6 +45,7 @@ function CartItem({ item }) {
         </button>
         <button
           className="cart-item-button"
+          onClick={handleRemove}
         >
           Remove
         </button>
